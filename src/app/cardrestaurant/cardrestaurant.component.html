@@ -1,0 +1,13 @@
+<div class="face-snap-card">
+  <h2>{{ cardrestomodel.nom | uppercase }}</h2>
+  <p>{{ cardrestomodel.restaurant_type }}</p>
+  <img [src]="cardrestomodel.url" [alt]="cardrestomodel.url" />
+  <p>{{ cardrestomodel.presentation }}</p>
+  <p>
+    {{ cardrestomodel.rue }} - {{ cardrestomodel.ville }} -
+    {{ cardrestomodel.codePostal }}
+  </p>
+
+  <button (click)="onMenu(cardrestomodel)">Voir Menu</button>
+  <button (click)="onLogin(cardrestomodel)">Réserver</button>
+</div>

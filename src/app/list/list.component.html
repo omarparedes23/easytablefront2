@@ -1,0 +1,7 @@
+<div class="containerlist">
+  <p>Liste de Restaurants</p>
+  <app-cardrestaurant
+    *ngFor="let resto of restaurantsArray$ | async"
+    [cardrestomodel]="resto"
+  ></app-cardrestaurant>
+</div>

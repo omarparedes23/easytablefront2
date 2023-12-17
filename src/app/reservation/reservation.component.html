@@ -1,0 +1,74 @@
+<body>
+  <div class="content-wrapper">
+    <div class="left-panel" *ngIf="restaurant$ | async as resto">
+      <div class="restaurant-info">
+        <h2>{{ resto.nom }} 🍽️</h2>
+        <form>
+          <input type="text" placeholder="{{ resto.rue }}" name="address" />
+          <textarea placeholder="{{ resto.presentation }}"></textarea>
+          <input type="text" placeholder="{{ resto.telephone }}" name="phone" />
+          <input type="email" placeholder="{{ resto.email }}" name="email" />
+        </form>
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <div class="reservation-info" *ngIf="client$ | async as clientresto">
+        <h2>Votre réservation ✅</h2>
+        <form [formGroup]="reservationForm">
+          <input
+            type="text"
+            placeholder="{{ clientresto.prenom }} {{ clientresto.nom }}"
+            name="fullname"
+            formControlName="clientId"
+          />
+          <label for="datereservation">Date et heure de réservation: </label>
+          <input
+            type="date"
+            placeholder="Jour"
+            name="datereservation"
+            value="{{ 23 - 12 - 2023 | date : 'dd-MM-yyyy' }}"
+            formControlName="dateReservation"
+          />
+
+          <select name="heure" id="from" formControlName="heureReservation">
+            <option>12:00</option>
+            <option>13:00</option>
+            <option>14:00</option>
+            <option>19:00</option>
+            <option>20:00</option>
+            <option>21:00</option>
+            <option>22:00</option>
+          </select>
+
+          <input
+            type="number"
+            placeholder="Nombre de personnes"
+            name="guests"
+            formControlName="nombrePersonnes"
+          />
+
+          <label for="pet-select">Choisir la table:</label>
+
+          <select
+            name="table"
+            id="table-select"
+            formControlName="tablerestaurantId"
+          >
+            <option value="default">
+              --S'il vous plait, choisir la table--
+            </option>
+            @if (restaurant2$ | async; as response) {
+            <option *ngFor="let idtable of response.tableRestaurants">
+              {{ idtable.id }}
+            </option>
+
+            }
+          </select>
+
+          <button (click)="onSubmitForm()" type="submit">CONFIRMER</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
