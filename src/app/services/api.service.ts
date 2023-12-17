@@ -21,19 +21,7 @@ export class ApiService {
   getRestaurants(): Observable<Irestaurant[]> {
     return this.http.get<Irestaurant[]>(this.urlApirestaurants);
   }
-  getRestaurantsYYYYY(): Observable<Irestaurant[]> {
-    return this.http.get<Irestaurant[]>(this.urlApirestaurants).pipe(
-      tap((resultat) => console.log('Résultat de la requête : ', resultat)),
-      catchError((error) => {
-        if (error.error instanceof ErrorEvent) {
-          console.log(`Error: ${error.error.message}`);
-        } else {
-          console.log(`Error: ${error.message}`);
-        }
-        return [];
-      })
-    );
-  }
+
   getRestaurant(id: number): Observable<Irestaurant> {
     return this.http.get<Irestaurant>(this.urlIp + `/restaurant/${id}`);
   }
@@ -54,8 +42,4 @@ export class ApiService {
   enregistrerClient(signupform: FormGroup) {
     return this.http.post<Iclient>(this.urlApisignup, signupform.value); //Icompte
   }
-
-  //getRestaurant2(id: number): Observable<Irestaurant> {
-  //  return this.http.get<Irestaurant>(this.urlIp + `/restaurant/${id}`);
-  //  }
 }
