@@ -5,7 +5,6 @@ import { Irestaurant } from '../interface/irestaurant';
 import { Iclient } from '../interface/iclient';
 import { FormGroup } from '@angular/forms';
 import { Ireservation } from '../interface/ireservation';
-import { Icompte } from '../interface/icompte';
 
 @Injectable({
   providedIn: 'root',
@@ -19,10 +18,10 @@ export class ApiService {
   private urlApisignup = this.urlIp + '/client/creerCompte';
 
   constructor(private http: HttpClient) {}
-  getRestaurantsxx(): Observable<Irestaurant[]> {
+  getRestaurants(): Observable<Irestaurant[]> {
     return this.http.get<Irestaurant[]>(this.urlApirestaurants);
   }
-  getRestaurants(): Observable<Irestaurant[]> {
+  getRestaurantsYYYYY(): Observable<Irestaurant[]> {
     return this.http.get<Irestaurant[]>(this.urlApirestaurants).pipe(
       tap((resultat) => console.log('Résultat de la requête : ', resultat)),
       catchError((error) => {
@@ -53,7 +52,7 @@ export class ApiService {
     );
   }
   enregistrerClient(signupform: FormGroup) {
-    return this.http.post<Icompte>(this.urlApisignup, signupform.value);
+    return this.http.post<Iclient>(this.urlApisignup, signupform.value); //Icompte
   }
 
   //getRestaurant2(id: number): Observable<Irestaurant> {

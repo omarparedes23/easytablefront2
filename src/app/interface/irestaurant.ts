@@ -1,3 +1,4 @@
+import { Imenu } from './imenu';
 import { Itablerestaurant } from './itablerestaurant';
 
 export interface Irestaurant {
@@ -12,4 +13,5 @@ export interface Irestaurant {
   restaurant_type: string;
   url: string;
   tableRestaurants: Itablerestaurant[];
+  menus: Imenu[];
 }

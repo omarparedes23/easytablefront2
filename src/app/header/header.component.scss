@@ -1,6 +1,5 @@
 .header {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   background: rgb(29, 29, 29);
   align-items: center;
@@ -30,6 +29,7 @@ h1 {
 
 .menu {
   display: flex;
+
   justify-content: flex-start;
   align-items: center;
   right: 7vh;
@@ -63,4 +63,23 @@ h1 {
 
 .menu-item a:hover::after {
   width: 100%;
+}
+
+@media all and (max-width: 600px) {
+  .header {
+    flex-direction: column;
+  }
+  .menu {
+    flex-direction: column;
+
+    right: 0vh;
+  }
+  h1 {
+    font-size: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  .logo {
+    left: 0;
+  }
 }

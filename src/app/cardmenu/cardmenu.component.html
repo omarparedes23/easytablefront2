@@ -1,1 +1,10 @@
-<p>cardmenu works!</p>
+<div class="restaurant-card">
+  <h1>{{ cardrestomodel.nom | uppercase }}</h1>
+  <h2>{{ cardrestomodel.menuType }}</h2>
+  <img [src]="cardrestomodel.url" [alt]="cardrestomodel.url" />
+  <p>{{ cardrestomodel.contenu }}</p>
+  <p>Prix : {{ cardrestomodel.prix }}€</p>
+  <br />
+
+  <button (click)="onLogin()">Réserver</button>
+</div>
