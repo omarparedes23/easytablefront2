@@ -11,8 +11,9 @@ import { Ireservation } from '../interface/ireservation';
 })
 export class ApiService {
   //urlIp: string = 'http://52.47.152.220:8080/easytable-0.0.1-SNAPSHOT';
-  urlIp: string = 'http://localhost:9000';
-  //urlIp: string = '/api';
+  //urlIp: string = 'http://localhost:9000';
+  //urlIp: string = 'http://52.47.152.220:8080/easytable-0.0.1-SNAPSHOT';
+  urlIp: string = '/api';
   private urlApirestaurants = this.urlIp + '/restaurant/restaurants';
   private urlApiclient = this.urlIp + '/client/1';
   private urlApireserver = this.urlIp + '/reservation/reserver';

@@ -1,9 +1,10 @@
 .menu-card {
   box-sizing: border-box;
-  width: 600px;
+  width: 700px;
   margin: 20px auto;
   padding: 10px 30px;
   box-shadow: lightgray 4px 4px 20px;
+  background-color: rgb(241 245 249);
   img {
     width: 100%;
     height: 200px;
@@ -20,27 +21,34 @@
     background-color: transparent;
     box-sizing: border-box;
     padding: 5px 10px;
-    border: none;
+    border: 1px solid lightgray;
+    border-radius: 10%;
     box-shadow: lightgray 3px 3px 7px;
     margin-right: 20px;
     outline: none;
-    font-size: 14px;
+    font-size: 24px;
     font-weight: 500;
+
     &:active {
       transform: translate(1px, 1px);
       box-shadow: lightgray 0 0 5px;
     }
+    &:hover {
+      background-color: green;
+      transition: 0.2s;
+      color: rgb(255, 255, 255);
+      transform: scale(0.9);
+    }
   }
 }
 
-.snapped {
-  background-color: rgba(lightgreen, 0.4);
-  color: darkgreen;
-  button {
-    box-shadow: lightgreen 3px 3px 7px;
-    color: darkgreen;
-    &:active {
-      box-shadow: lightgreen 0 0 5px;
-    }
+@media screen and (max-width: 768px) {
+  .menu-card {
+    width: 500px;
+  }
+}
+@media screen and (max-width: 550px) {
+  .menu-card {
+    width: 300px;
   }
 }
