@@ -28,10 +28,16 @@
             placeholder="Jour"
             name="datereservation"
             value="{{ 23 - 12 - 2023 | date : 'dd-MM-yyyy' }}"
-            formControlName="dateReservation" 
+            formControlName="dateReservation"
+            required
           />
 
-          <select name="heure" id="from" formControlName="heureReservation" >
+          <select
+            name="heure"
+            id="from"
+            formControlName="heureReservation"
+            required
+          >
             <option>12:00</option>
             <option>13:00</option>
             <option>14:00</option>
@@ -45,7 +51,8 @@
             type="number"
             placeholder="Nombre de personnes"
             name="guests"
-            formControlName="nombrePersonnes" 
+            formControlName="nombrePersonnes"
+            required
           />
 
           <label for="pet-select">Choisir la table:</label>
@@ -53,7 +60,7 @@
           <select
             name="table"
             id="table-select"
-            formControlName="tablerestaurantId" 
+            formControlName="tablerestaurantId"
           >
             <option value="default">
               --S'il vous plait, choisir la table--
@@ -65,7 +72,15 @@
 
             }
           </select>
-          <button [ngClass]="{ 'button-invalid': reservationForm.invalid }"           [ngClass]="{ 'button-valid': reservationForm.valid }"            (click)="onSubmitForm()" type="submit" [disabled]="reservationForm.invalid">CONFIRMER</button>
+          <button
+            [ngClass]="{ 'button-invalid': reservationForm.invalid }"
+            [ngClass]="{ 'button-valid': reservationForm.valid }"
+            (click)="onSubmitForm()"
+            type="submit"
+            [disabled]="reservationForm.invalid"
+          >
+            CONFIRMER
+          </button>
         </form>
       </div>
     </div>

@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Observable, take } from 'rxjs';
 import { Iclient } from '../interface/iclient';
 import { Irestaurant } from '../interface/irestaurant';
@@ -18,7 +23,7 @@ export class ReservationComponent implements OnInit {
   reservationForm!: FormGroup;
   public client$!: Observable<Iclient>;
   public restaurant$!: Observable<Irestaurant>;
-  public restaurant2$!: Observable<Irestaurant>; //restaurant2
+  public restaurant2$!: Observable<Irestaurant>;
   restoid!: string | null;
   clientid!: string | null;
   numberRegex!: RegExp;
@@ -41,10 +46,13 @@ export class ReservationComponent implements OnInit {
 
     this.reservationForm = this.formBuilder.group({
       clientId: [null],
-      dateReservation: [null,[Validators.required, this.dateValidator()]],
-      heureReservation: [null,[Validators.required, Validators.pattern(this.numberRegex)]],
-      nombrePersonnes: [null],
-      tablerestaurantId: [null,],
+      dateReservation: [null, [Validators.required, this.dateValidator()]],
+      heureReservation: [null, Validators.required],
+      nombrePersonnes: [
+        null,
+        [Validators.required, this.personnesValidation.bind(this)],
+      ],
+      tablerestaurantId: [null, Validators.required],
     });
   }
   //[Validators.required, Validators.pattern(this.numberRegex)]
@@ -82,26 +90,28 @@ export class ReservationComponent implements OnInit {
         }
       );
   }
-///
-dateValidator() {
-  return (control:AbstractControl) => {
-    const selectedDate = new Date(control.value);
-    const currentDate = new Date();
-
-    // Establecer la fecha mínima (puedes cambiarla a tu fecha mínima deseada)
-    const minDate = new Date();//'1900-01-01'
-    const maxDate = new Date();//'1900-01-01'
-    //const minDate = new Date('01-01-1900');
-    // Establecer la fecha máxima (puedes cambiarla a tu fecha máxima deseada)
-    //const maxDate = minDate+30;
-    maxDate.setDate(minDate.getDate() + 30);
-    //const maxDate = new Date('20-12-2023');
-
-    if (selectedDate < minDate || selectedDate > maxDate) {
-      return { invalidDate: true };
+  ///
+  dateValidator() {
+    return (control: AbstractControl) => {
+      const selectedDate = new Date(control.value);
+      const currentDate = new Date();
+      const minDate = new Date();
+      const maxDate = new Date();
+      maxDate.setDate(minDate.getDate() + 60);
+      if (selectedDate < minDate || selectedDate > maxDate) {
+        return { invalidDate: true };
+      }
+      return null;
+    };
+  }
+  personnesValidation(control: FormControl) {
+    const personnesValue = control.value;
+    if (
+      personnesValue !== null &&
+      (isNaN(personnesValue) || personnesValue <= 0 || personnesValue >= 12)
+    ) {
+      return { personnesValueValidation: true };
     }
     return null;
-  };
-}
-////
+  }
 }
