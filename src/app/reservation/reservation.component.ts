@@ -7,6 +7,7 @@ import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
 import { LocalService } from '../services/local.service';
 import { DatePipe } from '@angular/common';
+import { AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-reservation',
@@ -20,6 +21,7 @@ export class ReservationComponent implements OnInit {
   public restaurant2$!: Observable<Irestaurant>; //restaurant2
   restoid!: string | null;
   clientid!: string | null;
+  numberRegex!: RegExp;
 
   constructor(
     private apiservice: ApiService,
@@ -29,6 +31,7 @@ export class ReservationComponent implements OnInit {
     private datePipe: DatePipe
   ) {}
   ngOnInit(): void {
+    this.numberRegex = /^[0-9]*$/;
     this.restoid = this.localStore.getData('restoid');
     this.clientid = this.localStore.getData('clientid');
     this.client$ = this.apiservice.getClient(Number(this.clientid));
@@ -38,12 +41,13 @@ export class ReservationComponent implements OnInit {
 
     this.reservationForm = this.formBuilder.group({
       clientId: [null],
-      dateReservation: [null],
-      heureReservation: [null],
-      nombrePersonnes: [null, Validators.required],
-      tablerestaurantId: [null, Validators.required],
+      dateReservation: [null,[Validators.required, this.dateValidator()]],
+      heureReservation: [null,[Validators.required, Validators.pattern(this.numberRegex)]],
+      nombrePersonnes: [null],
+      tablerestaurantId: [null,],
     });
   }
+  //[Validators.required, Validators.pattern(this.numberRegex)]
 
   onSubmitForm() {
     this.reservationForm.value.clientId = this.clientid?.toString();
@@ -78,4 +82,26 @@ export class ReservationComponent implements OnInit {
         }
       );
   }
+///
+dateValidator() {
+  return (control:AbstractControl) => {
+    const selectedDate = new Date(control.value);
+    const currentDate = new Date();
+
+    // Establecer la fecha mínima (puedes cambiarla a tu fecha mínima deseada)
+    const minDate = new Date();//'1900-01-01'
+    const maxDate = new Date();//'1900-01-01'
+    //const minDate = new Date('01-01-1900');
+    // Establecer la fecha máxima (puedes cambiarla a tu fecha máxima deseada)
+    //const maxDate = minDate+30;
+    maxDate.setDate(minDate.getDate() + 30);
+    //const maxDate = new Date('20-12-2023');
+
+    if (selectedDate < minDate || selectedDate > maxDate) {
+      return { invalidDate: true };
+    }
+    return null;
+  };
+}
+////
 }
