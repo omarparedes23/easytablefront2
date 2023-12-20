@@ -6,6 +6,7 @@
           type="email"
           id="email"
           name="email"
+          ng-model="myName"
           placeholder="Adresse email"
           formControlName="email"
           required
@@ -24,10 +25,24 @@
       </div>
       <label></label>
       <div class="form-group">
-        <button (click)="onSubmitForm()" type="submit">CONNEXION</button>
+        <button
+          [ngClass]="{ 'button-invalid': loginForm.invalid }"
+          [ngClass]="{ 'button-valid': loginForm.valid }"
+          (click)="onSubmitForm()"
+          type="submit"
+          [disabled]="loginForm.invalid"
+        >
+          CONNEXION
+        </button>
       </div>
       <div class="form-group">
-        <button (click)="onCreationForm()" type="submit">CRÉER COMPTE</button>
+        <button
+          [ngClass]="'button-creation'"
+          (click)="onCreationForm()"
+          type="submit"
+        >
+          CRÉER COMPTE
+        </button>
       </div>
     </form>
   </div>

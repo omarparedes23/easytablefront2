@@ -13,6 +13,7 @@ import { take } from 'rxjs';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   emailinput: boolean = false;
+  motdePasseRegex!: RegExp;
   constructor(
     private router: Router,
     private formBuilder: FormBuilder,
@@ -20,9 +21,13 @@ export class LoginComponent implements OnInit {
     private localStore: LocalService
   ) {}
   ngOnInit(): void {
+    this.motdePasseRegex = /^.{6,}$/;
     this.loginForm = this.formBuilder.group({
-      email: [null, Validators.required],
-      motdepasse: [null],
+      email: [null, [Validators.required, Validators.email]],
+      motdepasse: [
+        null,
+        [Validators.required, Validators.pattern(this.motdePasseRegex)],
+      ],
     });
   }
   onSubmitForm() {
