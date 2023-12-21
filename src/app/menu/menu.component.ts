@@ -11,6 +11,7 @@ import { LocalService } from '../services/local.service';
   styleUrl: './menu.component.scss',
 })
 export class MenuComponent implements OnInit {
+  restoid!: string | null;
   public restaurantsArray$!: Observable<Irestaurant>;
   constructor(
     private apiservice: ApiService,
@@ -18,6 +19,7 @@ export class MenuComponent implements OnInit {
     private localStore: LocalService
   ) {}
   ngOnInit(): void {
-    this.restaurantsArray$ = this.apiservice.getRestaurant(1);
+    this.restoid = this.localStore.getData('restoid');
+    this.restaurantsArray$ = this.apiservice.getRestaurant(Number(this.restoid));
   }
 }
