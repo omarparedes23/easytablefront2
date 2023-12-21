@@ -10,9 +10,13 @@ import { Ireservation } from '../interface/ireservation';
   providedIn: 'root',
 })
 export class ApiService {
-  //urlIp: string = 'http://52.47.152.220:9000';
-  urlIp: string = 'http://localhost:9000';
+  //urlIp: string = 'http://52.47.152.220/easytable-0.0.1-SNAPSHOT';
+  //urlIp: string = 'http://localhost/easytable-0.0.1-SNAPSHOT';
   //urlIp: string = 'http://52.47.152.220:8080/easytable-0.0.1-SNAPSHOT';
+
+  //urlIp: string = 'http://52.47.152.220:9000';
+  //urlIp: string = 'http://localhost:9000/easytable-0.0.1-SNAPSHOT';
+  urlIp: string = 'http://localhost/easytable-0.0.1-SNAPSHOT';
   //urlIp: string = '/api';
   //urlIp: string = 'http://52.47.152.220:8080/easytable-0.0.1-SNAPSHOT';
   //urlIp: string = 'http://localhost:9000';
