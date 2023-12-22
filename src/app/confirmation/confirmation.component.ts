@@ -17,6 +17,7 @@ export class ConfirmationComponent implements OnInit {
   ngOnInit(): void {
     this.nomresto = this.localStore.getData('nomresto');
     this.addressresto = this.localStore.getData('addressresto');
+
     this.telephoneresto = this.localStore.getData('telephoneresto');
     this.datereservation = this.localStore.getData('datereservation');
     this.heurereservation = this.localStore.getData('heurereservation');

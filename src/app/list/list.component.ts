@@ -13,8 +13,6 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class ListComponent implements OnInit {
   public restaurantsArray$!: Observable<Irestaurant[]>;
-  //myResto!: CardRestoModel;
-  //myRestos!: Irestaurant[]; //CardRestoModel
 
   constructor(
     private apiservice: ApiService,
@@ -22,7 +20,6 @@ export class ListComponent implements OnInit {
     private localStore: LocalService
   ) {}
   ngOnInit(): void {
-    //this.myRestos = this.apiservice.getAllRestaurants();
     this.restaurantsArray$ = this.apiservice.getRestaurants();
   }
 }

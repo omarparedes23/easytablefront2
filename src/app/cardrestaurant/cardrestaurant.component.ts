@@ -14,16 +14,23 @@ export class CardrestaurantComponent implements OnInit {
   ngOnInit(): void {}
   onLogin(resto: Irestaurant): void {
     this.localStore.saveData('restoid', resto.id.toString());
-    /*this.localStore.saveData('nomresto', resto.nom);
+    this.localStore.saveData('nomresto', resto.nom);
     this.localStore.saveData(
       'addressresto',
       resto.rue + ' ' + resto.ville + ' ' + resto.codePostal
     );
-    this.localStore.saveData('telephoneresto', resto.telephone);*/
+    this.localStore.saveData('telephoneresto', resto.telephone);
+
     this.router.navigateByUrl('login');
   }
   onMenu(resto: Irestaurant): void {
     this.localStore.saveData('restoid', resto.id.toString());
+    this.localStore.saveData('nomresto', resto.nom);
+    this.localStore.saveData(
+      'addressresto',
+      resto.rue + ' ' + resto.ville + ' ' + resto.codePostal
+    );
+    this.localStore.saveData('telephoneresto', resto.telephone);
     this.router.navigateByUrl('menu');
   }
 }
