@@ -10,9 +10,12 @@ import { Ireservation } from '../interface/ireservation';
   providedIn: 'root',
 })
 export class ApiService {
-  //  urlIp: string = 'https://easytable.zapto.org/easytable-0.0.1-SNAPSHOT';
-  urlIp: string = 'http://localhost:9000';
+  //urlIp: string = 'http://13.39.67.95:9000';
+  //urlIp: string =    'http://ec2-35-181-51-145.eu-west-3.compute.amazonaws.com:9000';
+  urlIp: string = 'https://easytable.zapto.org/easytable-0.0.1-SNAPSHOT';
+  //urlIp: string = 'http://localhost:9000';
   //urlIp: string = '/api';
+  //http://52.47.152.220:8080/
   private urlApirestaurants = this.urlIp + '/restaurant/restaurants';
   private urlApiclient = this.urlIp + '/client/1';
   private urlApireserver = this.urlIp + '/reservation/reserver';

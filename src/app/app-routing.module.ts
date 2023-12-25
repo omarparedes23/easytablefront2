@@ -19,6 +19,8 @@ const routes: Routes = [
   { path: '**', redirectTo: 'home' },
 ];
 
+//this.router.loadComponent({  component: 'MyComponent',  module: './my-component.module'})
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],

@@ -63,7 +63,7 @@
             formControlName="tablerestaurantId"
           >
             <option value="default">
-              --S'il vous plait, choisir la table--
+              --S’il vous plaît, choisir la table--
             </option>
             @if (restaurant2$ | async; as response) {
             <option *ngFor="let idtable of response.tableRestaurants">
